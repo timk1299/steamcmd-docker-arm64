@@ -1,6 +1,6 @@
 # steamcmd-docker-arm64
 
-## [Get it from docker hub](coming soon)
+## [Get it from docker hub](https://hub.docker.com/r/timk1299/steamcmd)
 
 This repository is based on https://github.com/TeriyakiGod/steamcmd-docker-arm64.git, but with updated dependencies.
 
@@ -64,4 +64,4 @@ Once you've built the Docker image, you can run the SteamCMD container using the
 
 - [SteamCMD Documentation](https://developer.valvesoftware.com/wiki/SteamCMD)
 - [Docker Documentation](https://docs.docker.com/)
-- [Docker Hub Image](coming soon)
+- [Docker Hub Image](https://hub.docker.com/r/timk1299/steamcmd)
