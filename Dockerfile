@@ -10,29 +10,33 @@ RUN apt-get update && \
     git \
     cmake \
     ninja-build \
-    pkg-config \
+    pkgconf \
     ccache \
     clang \
     llvm \
     lld \
     binfmt-support \
-    libsdl2-dev \
-    libepoxy-dev \
     libssl-dev \
     python-setuptools \
     g++-x86-64-linux-gnu \
+    libgcc-12-dev-i386-cross \
+    libgcc-12-dev-amd64-cross \
     nasm \
     python3-clang \
-    libstdc++-10-dev-i386-cross \
-    libstdc++-10-dev-amd64-cross \
-    libstdc++-10-dev-arm64-cross \
+    libstdc++-12-dev-i386-cross \
+    libstdc++-12-dev-amd64-cross \
+    libstdc++-12-dev-arm64-cross \
     squashfs-tools \
     squashfuse \
     libc-bin \
+    libc6-dev-i386-amd64-cross \
+    lib32stdc++-12-dev-amd64-cross \
     expect \
     curl \
     sudo \
-    fuse
+    fuse \
+    qtdeclarative5-dev \
+    qtbase5-dev
 
 # Create a new user and set their home directory
 RUN useradd -m -s /bin/bash fex
@@ -46,7 +50,7 @@ USER fex
 WORKDIR /home/fex
 
 # Clone the FEX repository and build it
-RUN git clone --recurse-submodules https://github.com/FEX-Emu/FEX.git && \
+RUN git clone --recurse-submodules https://github.com/timk1299/FEX.git --branch FEX-2512-docker && \
     cd FEX && \
     mkdir Build && \
     cd Build && \
@@ -56,8 +60,7 @@ RUN git clone --recurse-submodules https://github.com/FEX-Emu/FEX.git && \
 WORKDIR /home/fex/FEX/Build
 
 RUN sudo ninja install && \
-    sudo ninja binfmt_misc_32 && \
-    sudo ninja binfmt_misc_64
+    sudo ninja binfmt_misc
 
 RUN sudo useradd -m -s /bin/bash steam
 
