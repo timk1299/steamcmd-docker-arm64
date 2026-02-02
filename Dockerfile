@@ -91,4 +91,4 @@ WORKDIR /home/steam/Steam
 # Download and run SteamCMD
 RUN curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
 
-ENTRYPOINT FEXBash ./steamcmd.sh
+ENTRYPOINT ["FEXBash", "./steamcmd.sh"]
