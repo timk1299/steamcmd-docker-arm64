@@ -1,6 +1,8 @@
 # steamcmd-docker-arm64
 
-## [Get it from docker hub](https://hub.docker.com/r/teriyakigod/steamcmd)
+## [Get it from docker hub](coming soon)
+
+This repository is based on https://github.com/TeriyakiGod/steamcmd-docker-arm64.git, but with updated dependencies.
 
 This repository provides a Docker image for running SteamCMD on ARM64 architecture. SteamCMD is a command-line utility that allows you to install and manage dedicated game servers via Steam.
 
@@ -16,7 +18,7 @@ To build the Docker image, follow these steps:
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/TeriyakiGod/steamcmd-docker-arm64.git
+   git clone https://github.com/timk1299/steamcmd-docker-arm64.git
    ```
 
 2. Navigate to the repository's directory:
@@ -62,4 +64,4 @@ Once you've built the Docker image, you can run the SteamCMD container using the
 
 - [SteamCMD Documentation](https://developer.valvesoftware.com/wiki/SteamCMD)
 - [Docker Documentation](https://docs.docker.com/)
-- [Docker Hub Image](https://hub.docker.com/r/teriyakigod/steamcmd)
+- [Docker Hub Image](coming soon)
