@@ -33,10 +33,13 @@ RUN apt-get update && \
     lib32stdc++-12-dev-amd64-cross \
     expect \
     curl \
+    wget \
     sudo \
     fuse \
     qtdeclarative5-dev \
-    qtbase5-dev
+    qtbase5-dev \
+    squashfs-tools && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create a new user and set their home directory
 RUN useradd -m -s /bin/bash fex
@@ -50,11 +53,11 @@ USER fex
 WORKDIR /home/fex
 
 # Clone the FEX repository and build it
-RUN git clone --recurse-submodules https://github.com/timk1299/FEX.git --branch FEX-2512-docker && \
+RUN git clone --recurse-submodules https://github.com/timk1299/FEX.git --branch FEX-2601-docker && \
     cd FEX && \
     mkdir Build && \
     cd Build && \
-    CC=clang CXX=clang++ cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_LINKER=lld -DENABLE_LTO=True -DBUILD_TESTS=False -DENABLE_ASSERTIONS=False -G Ninja .. && \
+    CC=clang CXX=clang++ cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DUSE_LINKER=lld -DENABLE_LTO=True -DBUILD_TESTING=False -DENABLE_ASSERTIONS=False -G Ninja .. && \
     ninja
 
 WORKDIR /home/fex/FEX/Build
@@ -63,8 +66,6 @@ RUN sudo ninja install && \
     sudo ninja binfmt_misc
 
 RUN sudo useradd -m -s /bin/bash steam
-
-RUN sudo apt install wget
 
 USER root
 
@@ -76,11 +77,11 @@ WORKDIR /home/steam/.fex-emu/RootFS/
 
 # Set up rootfs
 
-RUN wget -O Ubuntu_22_04.tar.gz https://www.dropbox.com/scl/fi/16mhn3jrwvzapdw50gt20/Ubuntu_22_04.tar.gz?rlkey=4m256iahwtcijkpzcv8abn7nf
+RUN wget -O Ubuntu_22_04.sqsh https://rootfs.fex-emu.gg/Ubuntu_22_04/2025-01-08/Ubuntu_22_04.sqsh
 
-RUN tar xzf Ubuntu_22_04.tar.gz
+RUN unsquashfs -f -d ./Ubuntu_22_04 Ubuntu_22_04.sqsh
 
-RUN rm ./Ubuntu_22_04.tar.gz
+RUN rm ./Ubuntu_22_04.sqsh
 
 WORKDIR /home/steam/.fex-emu
 
