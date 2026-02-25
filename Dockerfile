@@ -1,5 +1,5 @@
 # Use the official Ubuntu 22.04 as the base image
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # Set environment variables to avoid interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
@@ -17,7 +17,7 @@ RUN apt-get update && \
     lld \
     binfmt-support \
     libssl-dev \
-    python-setuptools \
+    python3-setuptools \
     g++-x86-64-linux-gnu \
     libgcc-12-dev-i386-cross \
     libgcc-12-dev-amd64-cross \
@@ -77,15 +77,15 @@ WORKDIR /home/steam/.fex-emu/RootFS/
 
 # Set up rootfs
 
-RUN wget -O Ubuntu_22_04.sqsh https://rootfs.fex-emu.gg/Ubuntu_22_04/2025-01-08/Ubuntu_22_04.sqsh
+RUN wget -O Ubuntu_24_04.sqsh https://rootfs.fex-emu.gg/Ubuntu_24_04/2025-12-27/Ubuntu_24_04.sqsh
 
-RUN unsquashfs -f -d ./Ubuntu_22_04 Ubuntu_22_04.sqsh
+RUN unsquashfs -f -d ./Ubuntu_24_04 Ubuntu_24_04.sqsh
 
-RUN rm ./Ubuntu_22_04.sqsh
+RUN rm ./Ubuntu_24_04.sqsh
 
 WORKDIR /home/steam/.fex-emu
 
-RUN echo '{"Config":{"RootFS":"Ubuntu_22_04"}}' > ./Config.json
+RUN echo '{"Config":{"RootFS":"Ubuntu_24_04"}}' > ./Config.json
 
 WORKDIR /home/steam/Steam
 
