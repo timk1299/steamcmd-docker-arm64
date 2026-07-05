@@ -48,7 +48,7 @@ USER fex
 WORKDIR /home/fex
 
 # Clone the FEX repository and build it
-RUN git clone --recurse-submodules https://github.com/timk1299/FEX.git --branch FEX-2605-docker && \
+RUN git clone --recurse-submodules https://github.com/timk1299/FEX.git --branch FEX-2607-docker && \
     cd FEX && \
     mkdir Build && \
     cd Build && \
